@@ -28,4 +28,8 @@ export class CartaoService {
       return this.http.put<void>(`${this.baseUrl}/${id}`, dados);
   }
 
+  mudarStatus(id: string) : Observable<void>{
+      return this.http.patch<void>(`${this.baseUrl}/${id}/status`, null);
+  }
+
 }

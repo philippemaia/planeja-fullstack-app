@@ -42,13 +42,13 @@ public class CartaoService {
     public CartaoDetalhes obterDetalhes(UUID id){
         return repository.findById(id)
                 .map(mapper::toDetalhes)
-                .orElseThrow(() -> new RegistroNaoEncontradoException());
+                .orElseThrow(RegistroNaoEncontradoException::new);
     }
 
     @Transactional
     public void atualizar(UUID id, CartaoForm dadosAtualizacao) {
         var entity = repository.findById(id)
-                .orElseThrow(() -> new RegistroNaoEncontradoException());
+                .orElseThrow(RegistroNaoEncontradoException::new);
 
         var result = validator.validar(dadosAtualizacao, id);
 
@@ -65,5 +65,15 @@ public class CartaoService {
         return repository
                 .findAll(pageRequest)
                 .map(mapper::toDetalhes);
+    }
+
+    @Transactional
+    public void mudarStatus(UUID id){
+        var cartao = repository.findById(id)
+                .orElseThrow(RegistroNaoEncontradoException::new);
+
+        cartao.setAtivo(!cartao.getAtivo());
+
+        repository.save(cartao); // opcional
     }
 }
