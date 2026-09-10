@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { PageResult } from '../../common/pagination/page-result';
 import { DetalhesCartao } from '../dados-cartao';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listagem-cartoes',
@@ -14,6 +15,7 @@ import { CommonModule } from '@angular/common';
 export class ListagemCartoes implements OnInit {
 
   service = inject(CartaoService);
+  router = inject(Router);
   listagem$!: Observable<PageResult<DetalhesCartao>>;
   paginaAtual = 0;
   tamanhoPagina = 5;
@@ -61,5 +63,13 @@ export class ListagemCartoes implements OnInit {
     }
 
     return Math.min( (listagem.number + 1) * listagem.size, listagem.totalElements );
+  }
+
+  prepararEdicao(idCartao: string){
+      this.router.navigate(['/paginas/cadastro-cartoes'], {
+        queryParams: {
+          id: idCartao
+        }
+      })
   }
 }
