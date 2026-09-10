@@ -9,8 +9,13 @@
 
 <main class="content">
     <div class="card-full">
-        <div class="table-card">
-            
+        <button class="btn-secondary" 
+                type="button" 
+                [routerLink]="['/paginas/cadastro-cartoes']" >
+                <i class="fa-solid fa-plus"></i>
+            Cadastrar Novo
+        </button>
+        <div class="table-card">            
             @if (listagem$ | async; as listagem) {
                 <table class="datatable">
                      <thead>
