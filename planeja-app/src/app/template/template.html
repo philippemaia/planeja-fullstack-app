@@ -6,9 +6,17 @@
         </div>
 
         <nav class="sidebar-menu">
-            <a class="menu-item active" [routerLink]="['/paginas/listagem-cartoes']">
+            <a class="menu-item active">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a class="menu-item" [routerLink]="['/paginas/listagem-cartoes']">
                 <i class="fa-solid fa-credit-card"></i>
-                <span>Cartões de Crédito</span>
+                <span>Cartões</span>
+            </a>
+            <a class="menu-item" [routerLink]="['/paginas/listagem-categorias']">
+                <i class="fa-solid fa-icons"></i>
+                <span>Categorias</span>
             </a>
         </nav>
     </aside>
