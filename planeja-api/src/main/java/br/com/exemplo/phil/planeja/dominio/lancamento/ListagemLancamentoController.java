@@ -1,5 +1,7 @@
 package br.com.exemplo.phil.planeja.dominio.lancamento;
 
+import br.com.exemplo.phil.planeja.dominio.categoria.CategoriaService;
+import br.com.exemplo.phil.planeja.dominio.categoria.dto.CategoriaDetalhes;
 import br.com.exemplo.phil.planeja.dominio.lancamento.dto.LancamentoDetalhes;
 import br.com.exemplo.phil.planeja.dominio.lancamento.model.TipoLancamento;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.YearMonth;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -22,6 +25,9 @@ public class ListagemLancamentoController {
 
     @Autowired
     private LancamentoService lancamentoService;
+
+    @Autowired
+    private CategoriaService categoriaService;
 
     @GetMapping
     public Page<LancamentoDetalhes> listar(
@@ -36,6 +42,11 @@ public class ListagemLancamentoController {
         var tipoLancamentoSelecionado = parseTipo(tipo);
 
         return lancamentoService.listar(pageRequest, mesAno, tipoLancamentoSelecionado, categoriaId);
+    }
+
+    @GetMapping("categorias-listagem")
+    public List<CategoriaDetalhes> listarTodas(){
+        return categoriaService.listarTodas();
     }
 
     private TipoLancamento parseTipo(String tipo) {
