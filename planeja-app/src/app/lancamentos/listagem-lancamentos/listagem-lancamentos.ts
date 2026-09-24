@@ -77,6 +77,16 @@ export class ListagemLancamentos implements OnInit{
     this.form.reset();
   }
 
+  deletar(id: string) : void{
+    this.service.deletar(id).subscribe({
+      next: () => {
+        this.toast.success('Lançamento excluído com sucesso!');
+        this.listarLancamentos();
+      },
+      error: () => this.toast.error('Erro ao excluir lançamento.')
+    });
+  }
+
   navegar(pagina: number){
     this.paginaAtual = pagina;
     this.listarLancamentos();

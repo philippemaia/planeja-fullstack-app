@@ -1,0 +1,5 @@
+2026-09-24 02:04:02.404001-03:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM TB_CATEGORIA \000d\000a\000d\000aupdate [*]TB_CATEGORIA set nome='Renda Extra' where id='dd917f0d-7981-47d8-b300-9b3fe6360275'"; SQL statement:
+SELECT * FROM TB_CATEGORIA 
+
+update TB_CATEGORIA set nome='Renda Extra' where id='dd917f0d-7981-47d8-b300-9b3fe6360275' [42000-240]

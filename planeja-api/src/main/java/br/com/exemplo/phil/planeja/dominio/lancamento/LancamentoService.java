@@ -1,5 +1,6 @@
 package br.com.exemplo.phil.planeja.dominio.lancamento;
 
+import br.com.exemplo.phil.planeja.common.exceptions.RegistroNaoEncontradoException;
 import br.com.exemplo.phil.planeja.common.exceptions.ValidationException;
 import br.com.exemplo.phil.planeja.dominio.cartao.CartaoRepository;
 import br.com.exemplo.phil.planeja.dominio.cartao.model.CartaoEntity;
@@ -85,5 +86,12 @@ public class LancamentoService {
         var resultado = lancamentoRepository.findAll(spec, pageRequest);
 
         return resultado.map(mapper::toDetalhes);
+    }
+
+    public void deletar(UUID id){
+        var lancamento = lancamentoRepository.findById(id)
+                .orElseThrow(RegistroNaoEncontradoException::new);
+
+        lancamentoRepository.delete(lancamento);
     }
 }
