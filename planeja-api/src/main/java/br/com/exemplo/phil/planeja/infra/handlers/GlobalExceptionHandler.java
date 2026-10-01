@@ -75,17 +75,14 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(UnauthorizedException.class)
-    public ResponseEntity<?> handleUnauthorizedException(UnauthorizedException ex){
-
-        var status = HttpStatus.UNAUTHORIZED;
-
+    public ResponseEntity<?> handleUnauthorizedException(UnauthorizedException e){
         return ResponseEntity
-                .status(status)
+                .status(HttpStatus.UNAUTHORIZED)
                 .body(Map.of(
                         "timestamp", LocalDateTime.now(),
-                        "status", status.value(),
-                        "error", ex.getMessage(),
-                        "message", ex.getMessage()
+                        "status", HttpStatus.UNAUTHORIZED.value(),
+                        "error", e.getMessage(),
+                        "message", e.getMessage()
                 ));
     }
 }
